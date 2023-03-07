@@ -22,19 +22,19 @@ class MaxBinaryHeap {
 
     //bubble up to place last element into correct spot
     this.bubbleUp();
-    
+
   }
 
   //method to bubble up until we find right spot to place new value
   bubbleUp() {
     let index = this.values.length - 1; //index of last element
     let element = this.values[index]; //actual element
-    
+
     //keep looping to try to find where to put the new value
     //if index is 0 we already know it's the largest element so we stop
     //we also BREAK out of the loop if element is less or equal to parent
     //this means we already found it's spot and no further swapping is needed
-    while(index > 0) {
+    while (index > 0) {
       //set the parentindex
       //find the right parent in the arr by subtracting one 
       //from the last element and dividing by 2
