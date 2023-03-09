@@ -59,10 +59,17 @@ class MaxBinaryHeap {
     //swap max el for last el
     const max = this.values[0]; //get first value
     const end = this.values.pop(); //remove and get last value
-    this.value[0] = end; //make last be first
 
-    //bubble down to find right place for new first el
+    //only swap last for first and bubble down
+    //IF there is more than one item in the arr
+    if (this.values.length > 0) {
+      this.value[0] = end; //make last be first
+
+      //bubble down to find right place for new first el
+      this.bubbleDown();
+    }
     
+    return max;
   }
 
   //method to bubble down in the arr until
@@ -110,9 +117,11 @@ class MaxBinaryHeap {
       //break out of loops if there were no swaps
       if (swap === null) break;
 
-      //if there were swap(s), swap with the correct one
-      this.values[index] = this.values[swap];
-      
+      //if there were swap(s) indications, swap with the correct one
+      this.values[index] = this.values[swap]; //move node to first place
+      this.values[swap] = element; //move previous first el
+      //update parent/current index that should be looked at
+      index = swap;
     }
   }
   
