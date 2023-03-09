@@ -51,4 +51,69 @@ class MaxBinaryHeap {
       index = parentIndex;
     }
   }
+
+  //Method to remove the max parent by removing the it and replacing it with 
+  //the most recent insertion (last element) and then swap (bubble down) 
+  //into the right place
+  removeMax() {
+    //swap max el for last el
+    const max = this.values[0]; //get first value
+    const end = this.values.pop(); //remove and get last value
+    this.value[0] = end; //make last be first
+
+    //bubble down to find right place for new first el
+    
+  }
+
+  //method to bubble down in the arr until
+  //we find the right spot for the newly swapped first element
+  bubbleDown() {
+    let index = 0; //index, start at the beginning
+    let length = this.values.length; //length of arr
+    let element = this.values[0]; //the first element that we want to move
+
+    while(true) {
+      let leftChildIndex = 2 * index + 1; //formula to get left child
+      let rightChildIndex = 2 * index + 2; //formula to get right child
+      let leftChild;
+      let rightChild;
+      let swap = null; //to keep track of swaps
+
+      //if left index is not out of bounds
+      if (leftChildIndex < length) {
+        //set actual left child element
+        leftChild = this.values[leftChildIndex];
+
+        //if the left child is greater than the element...
+        if (leftChild > element) {
+          swap = leftChildIndex; //to keep track of which index is bigger
+        }
+      }
+      //if right index is not out of bounds
+      if (rightChildIndex < length) {
+        //set actual right child element
+        rightChild = this.values[rightChildIndex];
+
+        //if we haven't already swapped the left child
+        //AND the right child is greater than the element,
+        //OR 
+        //if we HAVE already swapped the left child
+        //BUT (AND) the right child happens to be bigger than the left
+        if (
+          (!swap && rightChild > element) || 
+          (swap !== null && rightChild > leftChild)
+        ) {
+          swap = rightChildIndex; //make swap be the right index
+        }
+      }
+      
+      //break out of loops if there were no swaps
+      if (swap === null) break;
+
+      //if there were swap(s), swap with the correct one
+      this.values[index] = this.values[swap];
+      
+    }
+  }
+  
 }
